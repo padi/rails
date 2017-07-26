@@ -40,12 +40,20 @@ Rails ships with CoffeeScript by default, and so the rest of the examples
 in this guide will be in CoffeeScript. All of these lessons, of course, apply
 to vanilla JavaScript as well.
 
-As an example, here's some CoffeeScript code that makes an Ajax request using
-the jQuery library:
+As an example, here's some CoffeeScript code that makes an Ajax request:
 
 ```coffeescript
+# using the jQuery library
 $.ajax(url: "/test").done (html) ->
   $("#results").append html
+
+# without jQuery
+request = new XMLHttpRequest
+request.open 'GET', '/test', true
+request.onload = ->
+  resp = request.responseText
+  document.querySelector('#results').insertAdjacentHTML('beforeend', resp)
+request.send()
 ```
 
 This code fetches data from "/test", and then appends the result to the `div`
