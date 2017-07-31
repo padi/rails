@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require "active_model"
+#### ASDF
+require "activestorage"
 
 Customer = Struct.new(:name, :id) do
   extend ActiveModel::Naming
@@ -201,4 +203,8 @@ class Plane
   def save
     @to_key = [1]
   end
+end
+
+class User < ActiveRecord::Base
+  has_one_attached :avatar
 end
